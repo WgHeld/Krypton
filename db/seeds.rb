@@ -19,6 +19,14 @@ User.create({
 
 Device.create({
   name:      'Dishwasher',
-  reference: 'dw',
-  strategy:  'onetime',
+  reference: '89287aad-db10-4303-ad01-5547c67eca96',
+  strategy:  'countdown',
 })
+
+Device.create({
+  name:      'Trash',
+  reference: '103156b3-1a78-42c2-a4af-1512721ded3d',
+  strategy:  'countdown',
+})
+
+
