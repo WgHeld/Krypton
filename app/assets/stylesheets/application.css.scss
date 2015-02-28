@@ -1,0 +1,136 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+html, body, * {
+  padding: 0;
+  margin: 0;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+html, body, main {
+  height: 100%;
+  min-height: 100%;
+}
+
+main, header {
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  border-bottom: 2px solid #999;
+}
+
+section  {
+  flex: 1;
+  min-height: 75px;
+  height: 75px;
+
+  &.todo {
+    background-color: #f39c12;
+  }
+  &.toclaim {
+    background-color: #f39c12;
+  }
+  &.inprogess {
+    background-color: #27ae60;
+  }
+}
+
+ul#board {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+
+  li  {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+
+    img {
+      flex: 2;
+      align-self: center;
+      width: 80%;
+      height: 80%;
+      border-radius: 50%;
+      -webkit-border-radius: 50%;
+      -moz-border-radius: 50%;
+      // box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+      // -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+      // -moz-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+    }
+
+    .name {
+      flex: 5;
+      align-self: center;
+      font-size: 30px;
+      font-family: 'Helvetica Neue', Helvetica, Arial, serif;
+      font-weight: bold;
+      color: black;
+    }
+
+    .points {
+      flex: 5;
+      align-self: center;
+      font-size: 25px;
+      font-family: 'Helvetica Neue', Helvetica, Arial, serif;
+      font-weight: bold;
+      color: black;
+    }
+
+    &.tobi {
+      background-color: #2980b9;
+    }
+    &.roby {
+      background-color: #e67e22;
+    }
+    &.clemens {
+      background-color: #9b59b6;
+    }
+    &.christoph {
+      background-color: #f39c12;
+    }
+  }
+}
+
+footer {
+  min-height: 25px;
+  height: 25px;
+  align-self: center;
+  text-align: center;
+
+  a {
+    font-size: 12px;
+    font-family: 'Helvetica Neue', Helvetica, Arial, serif;
+    font-weight: 400;
+    color: #999;
+
+    &:visited {
+      color: #AAA;
+    }
+
+    &:hover {
+      color: #000;
+    }
+  }
+}
+
+.red   { background: red; }
+.blue  { background: blue; }
+.green { background: green; }

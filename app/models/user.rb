@@ -1,7 +1,19 @@
 class User < ActiveRecord::Base
 
-  has_many :task
+  has_many :tasks
 
   validates :name, presence: true
 
+  def css
+    name.downcase
+  end
+
+  def task_counter
+    tasks.count
+  end
+
+  def points
+    # @points ||= tasks.sum(&:points)
+    @points ||= rand(10000)
+  end
 end

@@ -28,3 +28,14 @@ rails g factory_girl:model task
 ```
 
 5. add event processing to controller
+
+
+6. add client code
+  - add haml
+  - add sass
+  - add backbone `rails generate backbone:install`
+  - js template: http://www.embeddedjs.com/
+
+
+7. sources:
+    - circular images: http://bavotasan.com/2011/circular-images-with-css3/
