@@ -14,19 +14,19 @@ Krypton.Views.UsersIndex = Backbone.View.extend({
     $(this.el).html("");
     for(var i=0; i < this.collection.length; i++) {
       $(this.el).append(this.template({
+        pos: (i + 1),
         user: this.collection.models[i]
       }));
     }
     return this;
   },
-
-  reRender: function() {
-    for(var i=0; i < this.collection.length; i++) {
-      var user = this.collection.models[i];
-      $(this.el).find("." + user.get('css')).css("order", i);
-      // update points
-    }
-    return this;
-  }
+  // reRender: function() {
+  //   for(var i=0; i < this.collection.length; i++) {
+  //     var user = this.collection.models[i];
+  //     $(this.el).find("." + user.get('css')).css("order", i);
+  //     // update points
+  //   }
+  //   return this;
+  // }
 
 });
