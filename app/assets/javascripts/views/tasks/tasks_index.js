@@ -1,6 +1,6 @@
-Krypton.Views.UsersIndex = Backbone.View.extend({
+Krypton.Views.TasksIndex = Backbone.View.extend({
 
-  template: JST['users/show'],
+  template: JST['tasks/show'],
 
   initialize: function() {
     this.collection.bind("reset", _.bind(this.render, this));
@@ -11,8 +11,7 @@ Krypton.Views.UsersIndex = Backbone.View.extend({
     $(this.el).html("");
     for(var i=0; i < this.collection.length; i++) {
       $(this.el).append(this.template({
-        pos: (i + 1),
-        user: this.collection.models[i]
+        task: this.collection.models[i]
       }));
     }
     return this;

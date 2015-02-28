@@ -19,7 +19,7 @@ describe "create start event", :type => :api do
 
   it "returns created event" do
     subject
-    expect(last_response.body).to eql("{\"device_reference\":\"dw\",\"type\":\"start\"}")
+    expect(last_response.body).to eql("{\"device_reference\":\"#{device_reference}\",\"type\":\"start\"}")
   end
 
   it "creates event" do

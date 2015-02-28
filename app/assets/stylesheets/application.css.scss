@@ -43,72 +43,73 @@ html, body, main {
   min-height: 100%;
 }
 
-main, header {
+main, #tasks {
   @include flexbox-display-flex;
   @include flexbox(flex-direction, column);
 }
 
-header {
+li  {
+  @include flexbox-display-flex;
+  @include flexbox(flex, 1);
+  @include flexbox(flex-direction, row);
+  @include flexbox(justify-content, space-around);
   border-bottom: 2px solid #999;
+
+  img {
+    flex: 2;
+    align-self: center;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    // box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+    // -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+    // -moz-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+  }
+
+  .name {
+    @include flexbox(flex, 5);
+    @include flexbox(align-self, center);
+    font-size: 35px;
+    font-family: 'Helvetica Neue', Helvetica, Arial, serif;
+    font-weight: bold;
+    color: #111;
+  }
+
+  .points, .tasks {
+    @include flexbox(flex, 4);
+    @include flexbox(align-self, center);
+    font-size: 30px;
+    font-family: 'Helvetica Neue', Helvetica, Arial, serif;
+    font-weight: bold;
+    color: #222;
+  }
 }
 
-section  {
-  @include flexbox(flex, 1);
-  min-height: 75px;
-  height: 75px;
-
-  &.todo {
-    background-color: #ff3824;
-  }
-  &.progress {
-    background-color: #ff9600;
-  }
-  &.unclaimed {
-    background-color: #44db5e;
-  }
-}
-
-ul#board {
-  @include flexbox-display-flex;
-  @include flexbox(flex, 1);
-  @include flexbox(flex-direction, column);
+#tasks {
+  border-bottom: 2px solid #999;
 
   li  {
-    @include flexbox-display-flex;
-    @include flexbox(flex, 1);
-    @include flexbox(flex-direction, row);
-    justify-content: space-around;
-    border-bottom: 2px solid #999;
+    // min-height: 75px;
+    // height: 75px;
 
-    img {
-      flex: 2;
-      align-self: center;
-      border-radius: 50%;
-      -webkit-border-radius: 50%;
-      -moz-border-radius: 50%;
-      // box-shadow: 0 0 8px rgba(0, 0, 0, .8);
-      // -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
-      // -moz-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+    &.todo {
+      background-color: #ff3824;
     }
-
-    .name {
-      @include flexbox(flex, 5);
-      @include flexbox(align-self, center);
-      font-size: 35px;
-      font-family: 'Helvetica Neue', Helvetica, Arial, serif;
-      font-weight: bold;
-      color: #111;
+    &.progress {
+      background-color: #ff9600;
     }
-
-    .points, .tasks {
-      @include flexbox(flex, 4);
-      @include flexbox(align-self, center);
-      font-size: 30px;
-      font-family: 'Helvetica Neue', Helvetica, Arial, serif;
-      font-weight: bold;
-      color: #222;
+    &.unclaimed {
+      background-color: #44db5e;
     }
+  }
+}
 
+#board {
+  @include flexbox-display-flex;
+  @include flexbox(flex, 1);
+  @include flexbox(flex-direction, column);
+
+  li {
     &.tobi {
       background-color: #5751d9;
        // #2980b9;

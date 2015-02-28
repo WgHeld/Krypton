@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :device do
     name      "Dishwasher"
-    reference "dw"
+    sequence(:reference)
     strategy  :onetime
 
     trait :with_running_task do

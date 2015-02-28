@@ -14,7 +14,6 @@ class User < ActiveRecord::Base
   end
 
   def points
-    # @points ||= tasks.sum(&:points)
-    @points ||= rand(10000)
+    @points ||= tasks.finished.to_a.sum(&:points)
   end
 end

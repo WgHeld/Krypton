@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :user do
-    name 'Heinrich'
-    reference 'heinrich'
+    sequence(:name) { |i| "Heinrich#{i}" }
+    reference { name.downcase }
   end
 
 end

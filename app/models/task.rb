@@ -2,8 +2,9 @@ class Task < ActiveRecord::Base
   STATE_RUNNING  = 'running'
   STATE_FINISHED = 'finished'
 
-  scope :needs_attention, -> { where.not(user: nil, state: STATE_FINISHED) }
+  scope :needs_attention, -> { where({user: nil}).where.not(state: STATE_FINISHED) }
   scope :running,         -> { where({:state => STATE_RUNNING }) }
+  scope :finished,        -> { where({:state => STATE_FINISHED }) }
 
   belongs_to :user
   belongs_to :device
@@ -35,19 +36,42 @@ class Task < ActiveRecord::Base
     save!
   end
 
+  def running?
+    state == STATE_RUNNING
+  end
+
   def finished?
     state == STATE_FINISHED
   end
 
+  def claimed?
+    user && finished?
+  end
+
+  def name
+    device.name
+  end
+
+  def css
+    # todo
+    if running?
+      'progress'
+    elsif claimed?
+      'unclaimed'
+    else
+      'finished'
+    end
+  end
+
   def expected_points
-    100
+    10000 - (Time.now - self.started_at).to_i
     # Scoreboard.expected_points(self)
   end
 
   private
 
   def calculate_points
-    if user && finished?
+    if claimed?
       self.points = expected_points
     end
   end

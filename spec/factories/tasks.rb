@@ -12,5 +12,10 @@ FactoryGirl.define do
         task.end!
       end
     end
+
+    trait :unclaimed do
+      finished
+      user { nil }
+    end
   end
 end
