@@ -7,7 +7,7 @@ class ClientController < ApplicationController
     @users = User.includes(:tasks).all.sort_by(&:points).reverse
 
     json = @users.as_json({
-      :only    => [:name, :reference],
+      :only    => [:name, :reference, :image],
       :methods => [:css, :points, :task_counter]
     })
 
@@ -18,7 +18,8 @@ class ClientController < ApplicationController
     @tasks = Task.needs_attention.all
 
     json = @tasks.as_json({
-      :methods => [:name, :css, :expected_points]
+      :only    => [],
+      :methods => [:image, :description, :css, :expected_points]
     })
 
     render :json => json

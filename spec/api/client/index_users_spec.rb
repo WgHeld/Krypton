@@ -16,7 +16,7 @@ describe "index of users", :type => :api do
   it "returns users" do
     subject
     expect(last_response.body).to eql(
-      %Q|[{"name":"#{user1.name}","reference":"#{user1.reference}","css":"#{user1.reference}","points":0,"task_counter":0}]|
+      %Q|[{"name":"#{user1.name}","reference":"#{user1.reference}","image":null,"css":"#{user1.reference}","points":0,"task_counter":0}]|
     )
   end
 

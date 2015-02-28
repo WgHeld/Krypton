@@ -11,12 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150228222834) do
+ActiveRecord::Schema.define(version: 20150228234913) do
 
   create_table "devices", force: :cascade do |t|
-    t.string "name",      limit: 255, null: false
-    t.string "reference", limit: 255, null: false
-    t.string "strategy",  limit: 255, null: false
+    t.string "name",        limit: 255, null: false
+    t.string "reference",   limit: 255, null: false
+    t.string "strategy",    limit: 255, null: false
+    t.string "image",       limit: 255
+    t.string "description", limit: 255
   end
 
   add_index "devices", ["reference"], name: "index_devices_on_reference", unique: true, using: :btree
@@ -40,6 +42,7 @@ ActiveRecord::Schema.define(version: 20150228222834) do
   create_table "users", force: :cascade do |t|
     t.string "name",      limit: 255, null: false
     t.string "reference", limit: 255, null: false
+    t.string "image",     limit: 255
   end
 
   add_index "users", ["reference"], name: "index_users_on_reference", unique: true, using: :btree

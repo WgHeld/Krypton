@@ -52,10 +52,18 @@ class Task < ActiveRecord::Base
     device.name
   end
 
+  def image
+    device.image
+  end
+
+  def description
+    device.description
+  end
+
   def css
     # todo
     if running?
-      'progress'
+      'running'
     elsif claimed?
       'unclaimed'
     else

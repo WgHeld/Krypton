@@ -55,9 +55,13 @@ li  {
   @include flexbox(justify-content, space-around);
   border-bottom: 2px solid #999;
 
+  .img {
+    @include flexbox(align-self, center);
+    @include flexbox(flex, 2);
+    text-align: center;
+  }
+
   img {
-    flex: 2;
-    align-self: center;
     border-radius: 50%;
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
@@ -75,7 +79,7 @@ li  {
     color: #111;
   }
 
-  .points, .tasks {
+  .points {
     @include flexbox(flex, 4);
     @include flexbox(align-self, center);
     font-size: 30px;
@@ -95,7 +99,7 @@ li  {
     &.todo {
       background-color: #ff3824;
     }
-    &.progress {
+    &.running {
       background-color: #ff9600;
     }
     &.unclaimed {
