@@ -11,6 +11,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20150228124524) do
+
+  create_table "devices", force: :cascade do |t|
+    t.string "name",      limit: 255, null: false
+    t.string "reference", limit: 255, null: false
+    t.string "strategy",  limit: 255, null: false
+  end
+
+  create_table "events", force: :cascade do |t|
+    t.string   "device_reference", limit: 255, null: false
+    t.string   "type",             limit: 255, null: false
+    t.datetime "created_at",                   null: false
+    t.string   "user_reference",   limit: 255
+  end
+
+  create_table "tasks", force: :cascade do |t|
+    t.integer "user_id",   limit: 4,                       null: false
+    t.integer "device_id", limit: 4,                       null: false
+    t.string  "state",     limit: 255, default: "running", null: false
+    t.integer "points",    limit: 4,                       null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "name",      limit: 255, null: false
+    t.string "reference", limit: 255
+  end
 
 end
