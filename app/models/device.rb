@@ -1,6 +1,6 @@
 class Device < ActiveRecord::Base
 
-  has_many :task
+  has_many :tasks
 
   validates :name,      presence: true
   validates :reference, presence: true
@@ -8,5 +8,9 @@ class Device < ActiveRecord::Base
 
   def to_s
     "Device#{id}: #{name}, ref: #{reference}"
+  end
+
+  def running_task
+    tasks.last
   end
 end

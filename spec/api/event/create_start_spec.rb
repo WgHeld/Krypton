@@ -4,20 +4,20 @@ describe "create start event", :type => :api do
 
   subject do
     post_json "/api/events/start", {
-      :device => device_reference
+      :device => device_reference,
+      # :user   => user_reference, # TBD
     }.to_json
   end
 
   let(:device) { create(:device) }
   let(:device_reference) { device.reference }
 
-
   it "returns succefully" do
     subject
     expect(last_response.status).to eql(201)
   end
 
-  it "returns succefully" do
+  it "returns created event" do
     subject
     expect(last_response.body).to eql("{\"device_reference\":\"dw\",\"type\":\"start\"}")
   end
@@ -28,7 +28,23 @@ describe "create start event", :type => :api do
     end.to change { Event.count }
   end
 
-  context "unkown device" do
+  it "creates task" do
+    expect do
+      subject
+    end.to change { Task.count }
+  end
+
+  context "when running task exists"  do
+    let!(:device) { create(:device, :with_running_task) }
+
+    it "does not create task" do
+      expect do
+        subject
+      end.to_not change { Task.count }
+    end
+  end
+
+  context "when device is unkown" do
     let(:device_reference) { "unkown" }
 
     it "returns not found" do

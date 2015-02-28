@@ -23,4 +23,8 @@ rails g model <Task/Event/User/Device>
 
 ```
 rails generate rspec:install
+rails g factory_girl:model device
+rails g factory_girl:model task
 ```
+
+5. add event processing to controller
