@@ -44,6 +44,16 @@ describe "create start event", :type => :api do
     end
   end
 
+  context "when running finished tasks"  do
+    let!(:device) { create(:device, :with_finished_task) }
+
+    it "does not create task" do
+      expect do
+        subject
+      end.to change { Task.count }
+    end
+  end
+
   context "when device is unkown" do
     let(:device_reference) { "unkown" }
 

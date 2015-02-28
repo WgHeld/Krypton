@@ -6,6 +6,7 @@ require "active_job/railtie"
 require "active_record/railtie"
 require "action_controller/railtie"
 require "action_view/railtie"
+require 'ejs'
 # require "sprockets/railtie"
 # require "rails/test_unit/railtie"
 

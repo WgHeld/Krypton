@@ -13,4 +13,15 @@ class ClientController < ApplicationController
 
     render :json => json
   end
+
+  def tasks
+    @tasks = Tasks.needs_attention.all
+
+    json = @tasks.as_json({
+      :only    => [:name, :reference, :css],
+      :methods => [:name, :css, :points, :task_counter]
+    })
+
+    render :json => json
+  end
 end

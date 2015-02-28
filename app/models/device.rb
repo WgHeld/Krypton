@@ -11,6 +11,6 @@ class Device < ActiveRecord::Base
   end
 
   def running_task
-    tasks.last
+    tasks.running.last
   end
 end

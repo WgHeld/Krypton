@@ -2,6 +2,9 @@ class Task < ActiveRecord::Base
   STATE_RUNNING  = 'running'
   STATE_FINISHED = 'finished'
 
+  scope :needs_attention, -> { where.not(user: nil, state: STATE_FINISHED) }
+  scope :running,         -> { where({:state => STATE_RUNNING }) }
+
   belongs_to :user
   belongs_to :device
   has_many   :events # TODO or one start, one end?
@@ -37,13 +40,14 @@ class Task < ActiveRecord::Base
   end
 
   def expected_points
-    Scoreboard.expected_points(self)
+    100
+    # Scoreboard.expected_points(self)
   end
 
   private
 
   def calculate_points
-    if user && finished
+    if user && finished?
       self.points = expected_points
     end
   end

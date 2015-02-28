@@ -9,5 +9,11 @@ FactoryGirl.define do
         create(:task, :device => device)
       end
     end
+
+    trait :with_finished_task do
+      after(:create) do |device, evaluator|
+        create(:task, :finished, :device => device)
+      end
+    end
   end
 end

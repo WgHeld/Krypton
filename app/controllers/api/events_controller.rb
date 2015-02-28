@@ -31,7 +31,7 @@ class Api::EventsController < ApplicationController
   end
 
   def find_user(user_reference)
-    nil #TBD
+    User.where(:reference => user_reference).first
   end
 
   def create_event(type, device, user)
