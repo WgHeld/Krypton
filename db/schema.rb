@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150228222144) do
+ActiveRecord::Schema.define(version: 20150228222834) do
 
   create_table "devices", force: :cascade do |t|
     t.string "name",      limit: 255, null: false
@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 20150228222144) do
 
   create_table "users", force: :cascade do |t|
     t.string "name",      limit: 255, null: false
-    t.string "reference", limit: 255
+    t.string "reference", limit: 255, null: false
   end
 
   add_index "users", ["reference"], name: "index_users_on_reference", unique: true, using: :btree
