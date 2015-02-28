@@ -2,10 +2,11 @@ class User < ActiveRecord::Base
 
   has_many :tasks
 
-  validates :name, presence: true
+  validates :name, presence: true, uniqueness: true
+  validates :reference, presence: true, uniqueness: true
 
   def css
-    name.downcase
+    reference
   end
 
   def task_counter

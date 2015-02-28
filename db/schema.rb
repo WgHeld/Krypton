@@ -11,13 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150228172112) do
+ActiveRecord::Schema.define(version: 20150228222144) do
 
   create_table "devices", force: :cascade do |t|
     t.string "name",      limit: 255, null: false
     t.string "reference", limit: 255, null: false
     t.string "strategy",  limit: 255, null: false
   end
+
+  add_index "devices", ["reference"], name: "index_devices_on_reference", unique: true, using: :btree
 
   create_table "events", force: :cascade do |t|
     t.string   "device_reference", limit: 255, null: false
@@ -39,5 +41,7 @@ ActiveRecord::Schema.define(version: 20150228172112) do
     t.string "name",      limit: 255, null: false
     t.string "reference", limit: 255
   end
+
+  add_index "users", ["reference"], name: "index_users_on_reference", unique: true, using: :btree
 
 end

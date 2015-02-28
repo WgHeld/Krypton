@@ -3,7 +3,7 @@ class Device < ActiveRecord::Base
   has_many :tasks
 
   validates :name,      presence: true
-  validates :reference, presence: true
+  validates :reference, presence: true, uniqueness: true
   validates :strategy,  presence: true
 
   def to_s
