@@ -12,8 +12,11 @@ window.Krypton = {
     taskView.setElement($('#tasks'));
     userView.setElement($('#board'));
 
-    setInterval(function(){ tasks.fetch({reset: true}); }, 500);
-    setInterval(function(){ users.fetch({reset: true}); }, 3000);
+    if (window.location.href.indexOf("reload") > -1) {
+      console.log("Auto-Reload enabled");
+      setInterval(function(){ tasks.fetch({reset: true}); }, 500);
+      setInterval(function(){ users.fetch({reset: true}); }, 3000);
+    }
   }
 };
 

@@ -17,7 +17,11 @@ describe "index of tasks", :type => :api do
 
   it "returns tasks" do
     subject
-    expect(last_response.body).to eql("[]")
+    expect(last_response.body).to eql("[" +
+      "{\"image\":null,\"description\":null,\"css\":\"running\",\"expected_points\":10000,\"user_image\":null}," +
+      "{\"image\":null,\"description\":null,\"css\":\"finished\",\"expected_points\":10000,\"user_image\":null}" +
+      "]"
+    )
   end
 
 end

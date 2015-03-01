@@ -2,7 +2,8 @@ class Task < ActiveRecord::Base
   STATE_RUNNING  = 'running'
   STATE_FINISHED = 'finished'
 
-  scope :needs_attention, -> { where({user: nil}).where.not(state: STATE_FINISHED) }
+  scope :no_user,         -> { where({user: nil}) }
+  scope :needs_attention, -> { where(["user_id IS NULL OR state = ?", STATE_RUNNING]) }
   scope :running,         -> { where({:state => STATE_RUNNING }) }
   scope :finished,        -> { where({:state => STATE_FINISHED }) }
 
@@ -15,6 +16,10 @@ class Task < ActiveRecord::Base
   validates :state,      presence: true
   validates :points,     presence: true
   validates :started_at, presence: true
+
+  delegate :image, :description, to: :device
+
+  # -------------------------------------------------------
 
   def start!
     self.points = 0
@@ -36,6 +41,8 @@ class Task < ActiveRecord::Base
     save!
   end
 
+  # -------------------------------------------------------
+
   def running?
     state == STATE_RUNNING
   end
@@ -45,26 +52,20 @@ class Task < ActiveRecord::Base
   end
 
   def claimed?
-    user && finished?
+    !user.nil?
   end
 
-  def name
-    device.name
-  end
+  # -------------------------------------------------------
 
-  def image
-    device.image
-  end
-
-  def description
-    device.description
+  def user_image
+    user.try(:image) || '/unknown.png'
   end
 
   def css
     # todo
     if running?
       'running'
-    elsif claimed?
+    elsif !claimed?
       'unclaimed'
     else
       'finished'
@@ -79,7 +80,7 @@ class Task < ActiveRecord::Base
   private
 
   def calculate_points
-    if claimed?
+    if claimed? && finished?
       self.points = expected_points
     end
   end

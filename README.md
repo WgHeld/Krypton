@@ -1,6 +1,22 @@
 # Krypton
 Server to collect all events and to calculate the task scores
 
+## Client
+
+### Login
+
+Due to time contrainst, no real user authentification was build, for now jsut pass the user reference as query param:
+
+```
+  http://host/?user=<user-reference>
+```
+
+### auto-reload
+To auto-reload score board and available task, pass `reload` as query param:
+
+```
+  http://host/?reload=true
+```
 
 ## Setup Log
 
@@ -39,3 +55,8 @@ rails g factory_girl:model task
 
 7. sources:
     - circular images: http://bavotasan.com/2011/circular-images-with-css3/
+
+
+8. Colors:
+- http://flatuicolors.com/
+- http://bruceelgort.com/2013/07/23/ios-7-color-palette/

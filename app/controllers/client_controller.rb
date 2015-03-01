@@ -18,8 +18,22 @@ class ClientController < ApplicationController
     @tasks = Task.needs_attention.all
 
     json = @tasks.as_json({
-      :only    => [],
-      :methods => [:image, :description, :css, :expected_points]
+      :only    => [:id],
+      :methods => [:image, :description, :css, :expected_points, :claimed?, :user_image]
+    })
+
+    render :json => json
+  end
+
+  def claim
+    task = find_task(params[:task_id]) || raise(NotFound, "No Task found for '#{params[:task_id]}'")
+    user = find_user(params[:user])    || raise(NotFound, "No User found for '#{params[:user]}'")
+
+    claim_task(task, user)
+
+    json = @tasks.as_json({
+      :only    => [:id],
+      :methods => [:image, :description, :css, :expected_points, :claimed?, :user_image]
     })
 
     render :json => json

@@ -1,5 +1,10 @@
-<li class="<%= task.get('css') %>">
+<li class="<%= task.get('css') %><%= task.claimable() %>" data-task-id="<%= task.get('id') %>">
   <span class="img"><img src="<%= task.get('image') %>"></span>
   <span class="name"><%= task.get('description') %></span>
   <span class="points">Expected: <%= task.get('expected_points') %> pts.</span>
+  <span class="user" style="background-image:url('<%= task.get('user_image') %>')">
+    <div id="overlay">
+      <div id="plus">claim</div>
+    </div>
+  </span>
 </li>
