@@ -73,8 +73,16 @@ class Task < ActiveRecord::Base
   end
 
   def expected_points
-    10000 - (Time.now - self.started_at).to_i
-    # Scoreboard.expected_points(self)
+    case device.strategy
+    when 'countdown'
+      100000 - (end_time - self.started_at).to_i
+    when 'duration'
+      1000 + (end_time - self.started_at).to_i * 20
+    end
+  end
+
+  def end_time
+    finished_at || Time.now
   end
 
   private

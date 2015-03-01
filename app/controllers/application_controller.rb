@@ -53,7 +53,7 @@ class ApplicationController < ActionController::Base
 
   def end_task(device, user)
     if task = device.running_task
-      task.user = user
+      task.user = user if user
       task.end!
     else
      raise(Unprocessable, "Device '#{device.reference}' has no running task")
